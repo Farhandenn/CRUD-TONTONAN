@@ -25,3 +25,7 @@ import {
  const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 const filmCollection = collection(db, "film")
+
+//fungsi untum menampilkan daftar film dan drama
+export async function daftarFilm() {
+}
