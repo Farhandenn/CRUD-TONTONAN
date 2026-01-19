@@ -29,3 +29,8 @@ const filmCollection = collection(db, "film")
 //fungsi untum menampilkan daftar film dan drama
 export async function daftarFilm() {
 }
+
+//fungsi untuk menambahkan film atau drama baru
+export async function tambahfilm(data){
+  
+}
