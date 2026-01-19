@@ -22,3 +22,6 @@ import {
   measurementId: "G-2T6Q5VM932"
 }
 
+ const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
+const filmCollection = collection(db, "film")
