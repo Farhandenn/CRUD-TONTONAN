@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>tambah film</title>
   
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"/>
 
 </head>
 <body>
@@ -27,7 +27,23 @@
         <button id="tombolSimpan" type="submit">Simpan</button>
       </form>
 
-      <a href="daftar.html">Daftar Film</a>
+      <a href="daftar.html">Daftarfilm</a>
     </div> 
+    
+    <script type="module">
+      import { tambahfilm } from './main.js'
+
+      // mengirimkan data film dari form
+      const formTambah = document.getElementById('formTambah')
+
+      // event ketika form disubmit (dikirim)
+      formTambah.addEventListener('submit', function (e) {
+        // mencegah reload halaman
+        e.preventDefault()
+
+        // eksekusi fungsi tambah data film
+        tambahfilm()
+      })
+    </script>
 </body>
 </html>

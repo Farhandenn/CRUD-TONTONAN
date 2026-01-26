@@ -27,10 +27,115 @@ const db = getFirestore(app)
 const filmCollection = collection(db, "film")
 
 //fungsi untum menampilkan daftar film dan drama
-export async function daftarFilm() {
+export async function daftarfilm() {
+  
+  // ambil snapshot data dari koleksi film
+  const snapshot = await getDocs(filmCollection)
+
+  // ambil elemen tabel data
+  const tabel = document.getElementById('tabelData')
+
+  // kosongkan isi tabel nya
+  tabel.innerHTML = ""
+
+  // loop setiap dokumen dalam snapshot
+  snapshot.forEach((doc) => {
+    // variabel untuk menyimpan data
+    const data = doc.data()
+    const id = doc.id
+
+    // buat elemen baris baru
+    const baris = document.createElement("tr")
+
+    // buat elemen kolom untuk judul
+    const judul = document.createElement("td")
+    judul.textContent = data.judul
+
+    // buat elemen untuk kolom sinopsis
+    const sinopsis = document.createElement("td")
+    sinopsis.textContent = data.sinopsis
+
+    // buat elemen kolom untuk aktor
+    const aktor = document.createElement('td')
+    aktor.textContent = data.aktor
+
+    // buat elemen kolom untuk aksi
+    const kolomAksi = document.createElement('td')
+
+    // tombol edit
+    const tombolEdit = document.createElement('a')
+    tombolEdit.textContent = 'Edit'
+    tombolEdit.href = 'edit.html?id=' + id
+    tombolEdit.className = 'button edit'
+
+    // tombol hapus
+    const tombolHapus = document.createElement('button')
+    tombolHapus.textContent = 'Hapus'
+    tombolHapus.className = 'button delete'
+    tombolHapus.onclick = async () => {
+      await hapusfilm(id)
+    }
+
+    // tambahkan elemen ke dalam kolom aksi
+    kolomAksi.appendChild(tombolEdit)
+    kolomAksi.appendChild(tombolHapus)
+
+    // tambahkan kolom ke dalam baris
+    baris.appendChild(judul)
+    baris.appendChild(sinopsis)
+    baris.appendChild(aktor)
+    baris.appendChild(kolomAksi)
+
+    // tambahkan baris ke aalam tabel
+    tabel.appendChild(baris)
+
+  })
 }
 
 //fungsi untuk menambahkan film atau drama baru
-export async function tambahfilm(data){
+export async function tambahfilm(data) {
+  //ambil nilai dari from
+  const  judul= document.getElementById('judul').value
+  const sinopsis = document.getElementById('sinopsis').value
+  const aktor = document.getElementById('aktor').value
+
+  // tambahkan data ke firestore
+  await addDoc(filmCollection, {
+    judul: judul,
+    sinopsis: sinopsis,
+    aktor: aktor
+  })
+
+  // alihkan ke halaman daftar film
+  window.location.href = 'daftar.html'
+}
   
+  export async function hapusfilm(id){
+    if (!confirm("yakin ingin menghapus data ini? "))return
+    //menghapus dokumen siswa berdasarkan id
+    await deleteDoc(doc(db,"film",id)) 
+    
+  //refresh data film
+  await daftarfilm()
+  }
+  
+  
+//fungsi untuk mengambil data siswa bedasarkan id
+//agar data ditampilkan di from ubah
+export async function ambildatafilm(id){
+  const docRef= doc(db, "film",id)
+  const docSnap=await getDoc(docRef) 
+  
+   return await docSnap.data()
+}
+
+//fungsi untuk mengubah data siswa
+export async function ubahdatafilm(judul,sinopsis, aktor){
+  await updateDoc(doc(db, "film",id),{
+    judul : judul, 
+    sinopsis:sinopsis, 
+    aktor : aktor, 
+    }) 
+//alihkan ke halaman daftar siswa
+window.location.href = 'daftar.html'
 }
