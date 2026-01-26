@@ -130,7 +130,7 @@ export async function ambildatafilm(id){
 }
 
 //fungsi untuk mengubah data siswa
-export async function ubahdatafilm(judul,sinopsis, aktor){
+export async function ubahdatafilm(id,judul,sinopsis, aktor){
   await updateDoc(doc(db, "film",id),{
     judul : judul, 
     sinopsis:sinopsis, 
