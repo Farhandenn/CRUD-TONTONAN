@@ -1,20 +1,22 @@
-body {
+ body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: #ffe4f0; 
   padding: 20px;
+  color: #5a2a4a; 
 }
 
 .container {
   max-width: 700px;
-  background: white;
   padding: 20px;
   margin: auto;
-  border-radius: 6px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.25);
 }
 
 h1 {
   text-align: center;
+  color: #ff4da6; 
 }
 
 input, select, button {
@@ -23,46 +25,67 @@ input, select, button {
   margin-top: 8px;
   margin-bottom: 15px;
   box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #ffb6d9;
 }
 
 button {
   cursor: pointer;
   border: none;
-  background: #007bff;
+  background: #ff69b4; 
   color: white;
-  border-radius: 4px;
+  border-radius: 8px;
+}
+
+button:hover {
+  opacity: 0.85;
 }
 
 button.delete {
-  background: #dc3545;
+  background: #ff4d6d; 
 }
 
 button.edit {
-  background: #ffc107;
-  color: black;
+  background: #ffd166; 
+  color: #333;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
+  background: #fff0f6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #ffb3d9;
+  color: #5a2a4a;
 }
 
 th, td {
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #ffd6eb;
 }
 
 a.button {
   display: inline-block;
   padding: 10px 15px;
-  background: #007bff;
+  background: #c77dff; 
   color: white;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   margin-bottom: 15px;
 }
 
 a.button.secondary {
-  background: #6c757d;
+  background: #b8b8ff;
+  color: #333;
+}
+
+.poster {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
 }
